@@ -3067,7 +3067,7 @@ export default function SehatNabhaApp() {
                                   </p>
                                   <p className="text-sm text-gray-600">
                                     <span className="font-semibold">Category:</span> {medicine.category} • 
-                                    <span className="font-semibold ml-2">Dosage:</span> {medicine.dosage}
+                                    <span className="font-semibold ml-2">Dosage:</span> {medicine.name}
                                   </p>
                                 </div>
                               </div>
