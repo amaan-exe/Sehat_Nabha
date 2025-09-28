@@ -100,7 +100,7 @@ export function AccessibilityControls({ language, onLanguageChange, onSettingsCh
   }
 
   const speakText = (text: string) => {
-    if (settings.voiceEnabled && "speechSynthesis" in window) {
+    if (settings.voiceEnabled && typeof window !== 'undefined' && "speechSynthesis" in window) {
       const utterance = new SpeechSynthesisUtterance(text)
       utterance.lang = language === "hi" ? "hi-IN" : language === "pa" ? "pa-IN" : "en-US"
       speechSynthesis.speak(utterance)

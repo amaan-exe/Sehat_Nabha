@@ -13,15 +13,19 @@ class SyncManager {
     batchSize: 10,
   }
 
-  private isOnline = navigator.onLine
+  private isOnline = typeof window !== 'undefined' ? navigator.onLine : true
   private syncInProgress = false
 
   constructor() {
-    this.setupEventListeners()
-    this.startPeriodicSync()
+    if (typeof window !== 'undefined') {
+      this.setupEventListeners()
+      this.startPeriodicSync()
+    }
   }
 
   private setupEventListeners(): void {
+    if (typeof window === 'undefined') return
+    
     window.addEventListener("online", () => {
       console.log("[v0] Connection restored, starting sync...")
       this.isOnline = true

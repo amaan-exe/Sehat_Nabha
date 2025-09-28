@@ -13,13 +13,15 @@ interface OfflineState {
 
 export function useOffline() {
   const [state, setState] = useState<OfflineState>({
-    isOnline: navigator.onLine,
+    isOnline: typeof window !== 'undefined' ? navigator.onLine : true,
     isSyncing: false,
     pendingSyncCount: 0,
     lastSyncTime: null,
   })
 
   useEffect(() => {
+    if (typeof window === 'undefined') return
+
     const updateOnlineStatus = () => {
       setState((prev) => ({
         ...prev,
